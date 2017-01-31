@@ -1,0 +1,26 @@
+{
+  "name": "reportbuilder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craigtb/ReportBuilder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/craigtb/ReportBuilder/issues"
+  },
+  "homepage": "https://github.com/craigtb/ReportBuilder#readme",
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-material": "^1.1.2-master-b2562cf",
+    "angular-route": "^1.6.1",
+    "gulp": "^3.9.1",
+    "lodash": "^4.17.4"
+  }
+}
