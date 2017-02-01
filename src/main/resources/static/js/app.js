@@ -1,4 +1,4 @@
-var app = angular.module('ReportBuilder', ['ngRoute']);
+var app = angular.module('ReportBuilder', ['ngRoute', 'ngMaterial']);
 
 app.config(function($routeProvider, $httpProvider) {
     $httpProvider.defaults.withCredentials = true;
