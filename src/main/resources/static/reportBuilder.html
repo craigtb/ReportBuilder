@@ -1,1 +1,33 @@
-<div>Hello</div>
+<div><h1>Neelys Report Builder</h1></div>
+
+<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+    <div>
+        <md-input-container>
+            <label>Company Name</label>
+            <input ng-model="reportBuilder.companyName" type="text">
+        </md-input-container>
+    </div>
+</md-content>
+
+
+<div>
+    Rules added: {{reportBuilder.itemCount}}
+</div>
+<div>
+    <select style="width: 200px;" ng-model="reportBuilder.currentItem.currentRule">
+        <option ng-repeat="rule in reportBuilder.rules" value="{{rule.id}}">{{rule.name}}</option>
+    </select>
+
+    <div>{{reportBuilder.rules[reportBuilder.currentItem.currentRule-1].description}}</div>
+    <br/>
+    <textarea ng-model="reportBuilder.currentItem.notes">
+
+    </textarea><br/>
+    <md-button class="md-raised md-primary" ng-click="reportBuilder.addItem()">Add</md-button>
+</div>
+<div>------------------------------------------</div>
+<h1>Report For: {{reportBuilder.companyName}}</h1>
+<div style="border: solid; margin: 3px" ng-repeat="x in reportBuilder.reportItems">
+    <div><b>Rule Description:</b> {{x.rule.description}}</div>
+     - <b>Notes: </b>{{x.notes}}
+</div>
