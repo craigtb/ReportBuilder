@@ -1,33 +1,58 @@
 <div><h1>Neelys Report Builder</h1></div>
 
-<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-    <div>
+<md-content  layout-gt-sm="row" layout-padding>
         <md-input-container>
             <label>Company Name</label>
             <input ng-model="reportBuilder.companyName" type="text">
         </md-input-container>
-    </div>
+    <md-input-container>
+        <label>Visit Date</label>
+        <md-datepicker ng-model="reportBuilder.myDate" md-placeholder="Enter date"></md-datepicker>
+    </md-input-container>
+
+</md-content>
+<md-content layout-gt-sm="column" layout-padding>
+    <md-input-container>
+        <label>Introduction</label>
+        <textarea rows="4" cols="50" ng-model="reportBuilder.introduction"></textarea>
+    </md-input-container>
+    <md-input-container>
+        <label>Closing Paragraph</label>
+        <textarea rows="4" cols="50" ng-model="reportBuilder.closing"></textarea>
+    </md-input-container>
+</md-content>
+<md-content>
+    <md-input-container class="md-block" style="width: 10em;" flex-gt-sm>
+        <label>Please Select a Rule</label>
+        <md-select ng-model="reportBuilder.currentItem.currentRule">
+            <md-option ng-repeat="rule in reportBuilder.rules" value="{{rule.id}}">
+                {{rule.name}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+    <div>{{reportBuilder.rules[reportBuilder.currentItem.currentRule-1].description}}</div>
+    <md-input-container>
+        <label>Notes</label>
+        <textarea rows="4" cols="50" ng-model="reportBuilder.currentItem.notes"></textarea>
+    </md-input-container>
+    <md-button class="md-raised md-primary" ng-click="reportBuilder.addItem()">Add</md-button>
+</md-content>
+<md-content>
+    <md-button class="md-raised md-primary" ng-click="reportBuilder.generateReport()">Generate Report</md-button>
 </md-content>
 
-
-<div>
-    Rules added: {{reportBuilder.itemCount}}
-</div>
-<div>
-    <select style="width: 200px;" ng-model="reportBuilder.currentItem.currentRule">
-        <option ng-repeat="rule in reportBuilder.rules" value="{{rule.id}}">{{rule.name}}</option>
-    </select>
-
-    <div>{{reportBuilder.rules[reportBuilder.currentItem.currentRule-1].description}}</div>
-    <br/>
-    <textarea ng-model="reportBuilder.currentItem.notes">
-
-    </textarea><br/>
-    <md-button class="md-raised md-primary" ng-click="reportBuilder.addItem()">Add</md-button>
-</div>
 <div>------------------------------------------</div>
-<h1>Report For: {{reportBuilder.companyName}}</h1>
-<div style="border: solid; margin: 3px" ng-repeat="x in reportBuilder.reportItems">
-    <div><b>Rule Description:</b> {{x.rule.description}}</div>
-     - <b>Notes: </b>{{x.notes}}
+<div style="border: solid;" ng-show="reportBuilder.showReport">
+    <h1>Report For: {{reportBuilder.companyName}}</h1>
+    <h3>Date Visited {{reportBuilder.myDate | date:'yyyy-MM-dd'}}</h3>
+    <div>
+        {{reportBuilder.introduction}}
+    </div>
+    <div style="border: dashed; margin: 3px" ng-repeat="x in reportBuilder.reportItems">
+        <div><b>Rule Description:</b> {{x.rule.description}}</div>
+         - <b>Notes: </b>{{x.notes}}
+    </div>
+    <div>
+        {{reportBuilder.closing}}
+    </div>
 </div>

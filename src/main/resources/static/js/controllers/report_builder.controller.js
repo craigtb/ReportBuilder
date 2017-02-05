@@ -11,6 +11,10 @@
         reportBuilder.currentRule = 0
         reportBuilder.companyName = ""
         reportBuilder.reportItems = []
+        reportBuilder.myDate = new Date();
+        reportBuilder.isOpen = false;
+        reportBuilder.showReport = false;
+        reportBuilder.report = {rompanyName: null, date: null, introduction: null, reportItems: [], closing: null};
 
         $http.get('/getAllRules')
             .then(function(data) {
@@ -26,6 +30,17 @@
             reportBuilder.currentItem.rule = reportBuilder.rules[rule]
             reportBuilder.reportItems.push(reportBuilder.currentItem)
             reportBuilder.currentItem = {}
+        }
+
+        reportBuilder.generateReport = function() {
+            reportBuilder.showReport = !reportBuilder.showReport;
+            reportBuilder.report.companyName = reportBuilder.companyName;
+            reportBuilder.report.date = reportBuilder.myDate;
+            reportBuilder.report.introduction = reportBuilder.introduction;
+            reportBuilder.report.closing = reportBuilder.closing;
+            reportBuilder.report.reportItems = reportBuilder.reportItems;
+            alert(reportBuilder.report)
+
         }
     }
 })();

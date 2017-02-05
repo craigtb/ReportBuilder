@@ -1,6 +1,8 @@
 var app = angular.module('ReportBuilder', ['ngRoute', 'ngMaterial']);
 
-app.config(function($routeProvider, $httpProvider) {
+app.config(function($routeProvider, $httpProvider, $mdThemingProvider) {
+    $mdThemingProvider.theme('docs-dark', 'default')
+        .dark()
     $httpProvider.defaults.withCredentials = true;
     $routeProvider
         .when('/reportBuilder', {
