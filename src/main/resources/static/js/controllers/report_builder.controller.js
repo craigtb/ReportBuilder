@@ -3,7 +3,7 @@
 
     app.controller('reportBuilderCtrl', reportBuilderCtrl);
     
-    function reportBuilderCtrl($http){
+    function reportBuilderCtrl($http, ReportService){
         var reportBuilder = this;
         reportBuilder.rules = []
         reportBuilder.currentItem = {}
@@ -14,7 +14,7 @@
         reportBuilder.myDate = new Date();
         reportBuilder.isOpen = false;
         reportBuilder.showReport = false;
-        reportBuilder.report = {rompanyName: null, date: null, introduction: null, reportItems: [], closing: null};
+        reportBuilder.report = {companyName: null, date: null, introduction: null, reportItems: [], closing: null};
 
         $http.get('/getAllRules')
             .then(function(data) {
@@ -39,7 +39,10 @@
             reportBuilder.report.introduction = reportBuilder.introduction;
             reportBuilder.report.closing = reportBuilder.closing;
             reportBuilder.report.reportItems = reportBuilder.reportItems;
-            alert(reportBuilder.report)
+            ReportService.setReport(reportBuilder.report)
+            // reportBuilder.report = ReportService.getReport()
+
+            location.assign('/#!/reportViewer')
 
         }
     }

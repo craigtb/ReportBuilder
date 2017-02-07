@@ -1,0 +1,14 @@
+.report {
+    border: dashed;
+    width: 55%;
+    float: right;
+}
+
+.report .paragraph {
+    margin: 1em;
+}
+
+.form {
+    width: 40%;
+    float: left;
+}
